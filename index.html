@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Cryptographie Projet</title>
+
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -33,7 +34,7 @@
   </head>
   <body>
     <h1>Bienvenue sur ma landing page</h1>
-    <p>Formulaire d'encryption MD5</p>
+    <p class="formTitle">Formulaire d'encryption MD5</p>
         <form>
             <label for="textInput">Entrez du texte à chiffrer:</label>
             <br>
@@ -45,7 +46,7 @@
         <p>Texte chiffré:</p>
         <p id="hashOutputMD5"></p>
     
-    <p>Formulaire d'encryption SHA256</p>
+    <p class="formTitle">Formulaire d'encryption SHA256</p>
         <form>
                 <label for="textInput">Entrez du texte à chiffrer:</label>
                 <br>
@@ -57,10 +58,30 @@
         <p>Texte chiffré:</p>
         <p id="hashOutputSHA"></p>
     
-    <p>Formulaire d'encryption Keccak-512</p>
-    <p>Formulaire d'encryption RipeMD160</p>
-    <p>Formulaire d'encryption AES</p>
-    <p>Formulaire d'encryption RSA</p>
+    <p class="formTitle">Formulaire d'encryption Keccak-512</p>
+      <form>
+        <label for="textInput">Entrez du texte à chiffrer:</label>
+        <br>
+        <input type="text" id="textInput">
+        <br><br>
+        <button type="button" onclick="calculateHashKeccak()">Envoyer</button>
+      </form>
+      <br>
+      <p>Texte chiffré:</p>
+      <p id="hashOutputKeccak"></p>
+
+    <p class="formTitle">Formulaire d'encryption RipeMD160</p>
+      <form>
+        <label for="textInput">Entrez du texte à chiffrer:</label>
+        <br>
+        <input type="text" id="textInput">
+        <br><br>
+        <button type="button" onclick="calculateHashRipe()">Envoyer</button>
+      </form>
+      <br>
+      <p>Texte chiffré:</p>
+      <p id="hashOutputRipe"></p>
+
     <a href="https://github.com/IgorLTS10/cryptography-project" class="btn">GitHub</a>
 
     <script>
@@ -88,7 +109,22 @@
         const crypto = new Hashes.MD5();
         const hash = crypto.hex(text);
         document.getElementById("hashOutputMD5").innerText = hash;
-      }
+        }
+
+        function calculateHashKeccak() {
+        const text = document.getElementById("textInput").value;
+        const crypto = new Hashes.SHA3(512);
+        const hash = crypto.hex(text);
+        document.getElementById("hashOutputKeccak").innerText = hash;
+        }
+
+        function calculateHashRipe() {
+        const text = document.getElementById("textInput").value;
+        const hash = CryptoJS.RMD160(text);
+        document.getElementById("hashOutputRipe").innerText = hash.toString();
+        }
+
       </script>
+      <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.0.0/crypto-js.min.js"></script>
   </body>
 </html>
