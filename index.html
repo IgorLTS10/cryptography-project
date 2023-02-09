@@ -8,7 +8,7 @@
       body {
         font-family: Arial, sans-serif;
         text-align: center;
-        background-color: #f2f2f2;
+        background: linear-gradient(#cdcdcd, #606060);
       }
       h1 {
         font-size: 42px;
@@ -18,7 +18,7 @@
       p {
         font-size: 18px;
         margin: 20px 0;
-        color: #555;
+        color: rgb(246, 246, 246);
         line-height: 1.5;
       }
       .btn {
@@ -30,57 +30,119 @@
         text-decoration: none;
         margin-top: 30px;
       }
-    </style>
+
+      .box{
+        width: 50%;
+        background: rgba(0,0,0,.5);
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0,0,0,.6);
+        border-radius: 10px;
+        
+      }
+      .box h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+      }
+
+      .box input {
+        width: 60%;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background: transparent;
+      }
+
+      .box label {
+        top:0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        pointer-events: none;
+        transition: .5s;
+      }
+
+      button {
+        background: white;
+        border: solid 2px black;
+        padding: .375em 1.125em;
+        font-size: 1rem;
+      }
+
+      button:hover{
+        color: white;
+      }
+
+  </style>
   </head>
   <body>
     <h1>Bienvenue sur ma landing page</h1>
-    <p class="formTitle">Formulaire d'encryption MD5</p>
+    <div class="box">
+      <h2>Formulaire d'encryption MD5</h2>
         <form>
-            <label for="textInput">Entrez du texte à chiffrer:</label>
-            <br>
+          <label for="textInput">Entrez du texte à chiffrer:</label>
+          <br>
             <input type="text" id="textInput">
             <br><br>
             <button type="button" onclick="calculateHashMD5()">Envoyer</button>
-        </form>
-        <br>
-        <p>Texte chiffré:</p>
-        <p id="hashOutputMD5"></p>
+            <br>
+            <p>Texte chiffré:</p>
+            <p id="hashOutputMD5"></p>
+        </form> 
+    </div>
     
-    <p class="formTitle">Formulaire d'encryption SHA256</p>
+    <div class="box">
+      <h2>Formulaire d'encryption SHA256</h2>
         <form>
                 <label for="textInput">Entrez du texte à chiffrer:</label>
                 <br>
                 <input type="text" id="textInput">
                 <br><br>
-                <button type="button" onclick="calculateHashSHA()">Envoyer</button>
-        </form>
-        <br>
+                <div class="buttons-container">
+                <button type="button" onclick="calculateHashSHA()">Envoyer</button></div>
+                <br>
         <p>Texte chiffré:</p>
         <p id="hashOutputSHA"></p>
-    
-    <p class="formTitle">Formulaire d'encryption Keccak-512</p>
+        </form>
+        
+    </div>  
+
+
+    <div class="box">
+      <h2>Formulaire d'encryption Keccak-512</h2>
       <form>
         <label for="textInput">Entrez du texte à chiffrer:</label>
         <br>
         <input type="text" id="textInput">
         <br><br>
         <button type="button" onclick="calculateHashKeccak()">Envoyer</button>
+        <br>
+        <p>Texte chiffré:</p>
+        <p id="hashOutputKeccak"></p> 
       </form>
-      <br>
-      <p>Texte chiffré:</p>
-      <p id="hashOutputKeccak"></p>
-
-    <p class="formTitle">Formulaire d'encryption RipeMD160</p>
+      
+      
+    </div>
+    <div class="box">
+      <h2>Formulaire d'encryption RipeMD160</h2>
       <form>
         <label for="textInput">Entrez du texte à chiffrer:</label>
         <br>
         <input type="text" id="textInput">
         <br><br>
         <button type="button" onclick="calculateHashRipe()">Envoyer</button>
+        <br>
+        <p>Texte chiffré:</p>
+        <p id="hashOutputRipe"></p>
       </form>
-      <br>
-      <p>Texte chiffré:</p>
-      <p id="hashOutputRipe"></p>
+     
+    </div>
 
     <a href="https://github.com/IgorLTS10/cryptography-project" class="btn">GitHub</a>
 
