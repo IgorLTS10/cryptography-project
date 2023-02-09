@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Ma landing page</title>
+    <title>Cryptographie Projet</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -33,7 +33,62 @@
   </head>
   <body>
     <h1>Bienvenue sur ma landing page</h1>
-    <p>Je suis un exemple de landing page en HTML et CSS</p>
-    <a href="#" class="btn">En savoir plus</a>
+    <p>Formulaire d'encryption MD5</p>
+        <form>
+            <label for="textInput">Entrez du texte à chiffrer:</label>
+            <br>
+            <input type="text" id="textInput">
+            <br><br>
+            <button type="button" onclick="calculateHashMD5()">Envoyer</button>
+        </form>
+        <br>
+        <p>Texte chiffré:</p>
+        <p id="hashOutputMD5"></p>
+    
+    <p>Formulaire d'encryption SHA256</p>
+        <form>
+                <label for="textInput">Entrez du texte à chiffrer:</label>
+                <br>
+                <input type="text" id="textInput">
+                <br><br>
+                <button type="button" onclick="calculateHashSHA()">Envoyer</button>
+        </form>
+        <br>
+        <p>Texte chiffré:</p>
+        <p id="hashOutputSHA"></p>
+    
+    <p>Formulaire d'encryption Keccak-512</p>
+    <p>Formulaire d'encryption RipeMD160</p>
+    <p>Formulaire d'encryption AES</p>
+    <p>Formulaire d'encryption RSA</p>
+    <a href="https://github.com/IgorLTS10/cryptography-project" class="btn">GitHub</a>
+
+    <script>
+        function calculateHashSHA() {
+          const text = document.getElementById("textInput").value;
+          const buffer = new TextEncoder().encode(text);
+          const hash = crypto.subtle.digest("SHA-256", buffer);
+          hash.then(function(result) {
+            const hexCodes = [];
+            const view = new DataView(result);
+            for (let i = 0; i < view.byteLength; i += 4) {
+              const value = view.getUint32(i);
+              const stringValue = value.toString(16);
+              const padding = "00000000";
+              const paddedValue = (padding + stringValue).slice(-padding.length);
+              hexCodes.push(paddedValue);
+            }
+            const hashHex = hexCodes.join("");
+            document.getElementById("hashOutputSHA").innerText = hashHex;
+          });
+        }
+
+        function calculateHashMD5() {
+        const text = document.getElementById("textInput").value;
+        const crypto = new Hashes.MD5();
+        const hash = crypto.hex(text);
+        document.getElementById("hashOutputMD5").innerText = hash;
+      }
+      </script>
   </body>
 </html>
